@@ -1,0 +1,25 @@
+# 1.虚拟环境创建：（虚拟环境中的cuda版本以下面的安装的版本为准）
+ln -s /home/jin/6t/learn/env/agent /home/jin/anaconda3/envs/agent
+conda create -p /home/jin/6t/learn/env/agent python==3.12
+conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1  pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install mkl=2023.1.0
+
+# 查看torch环境gpu是否可用
+python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('CUDA version:', torch.version.cuda); print('Device count:', torch.cuda.device_count())"
+
+# 2.大模型调用通用格式依赖库安装
+pip install openai
+pip install anthropic
+pip install langchain
+pip install "httpx[socks]" # 使得脚本能够走代理的能力
+pip install -r requirements.txt -i https://pypi.douban.com/simple/
+
+
+# 3.加速安装镜像源
+清华大学：https://pypi.tuna.tsinghua.edu.cn/simple
+阿里云：https://mirrors.aliyun.com/pypi/simple/
+中国科技大学: https://pypi.mirrors.ustc.edu.cn/simple/
+华中理工大学：https://pypi.hustunique.com/
+山东理工大学：https://pypi.sdutlinux.org/
+豆瓣：https://pypi.douban.com/simple/
+中山大学：http://mirror.sysu.edu.cn/pypi/
